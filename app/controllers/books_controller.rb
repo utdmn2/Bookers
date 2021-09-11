@@ -6,12 +6,12 @@ class BooksController < ApplicationController
 
 
   def create
-  #データを新規登録するためのインスタンス作成
-   book = Book.new(book_params)
-  #データをデータベースに保存するためのsaveメソッド実行
-   book.save
-   #redirect先は詳細画面
-   redirect_to book_path(book.id)
+   @book = Book.new(book_params)
+   if @book.save
+     redirect_to book_path(@book.id)
+   else
+     render :index
+   end
   end
 
   def show
@@ -26,6 +26,13 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     book.update(book_params)
     redirect_to book_path(book.id)
+  end
+
+  def destroy
+    book = Book.find(params[:id]) #データ(レコード)を一件取得
+    book.destroy  #データ（レコード）を削除
+    redirect_to books_path #投稿一覧画面へリダイレクト
+
   end
 
   private
