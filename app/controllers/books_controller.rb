@@ -7,8 +7,9 @@ class BooksController < ApplicationController
 
   def create
    @book = Book.new(book_params)
+   @books = Book.all
    if @book.save
-     redirect_to book_path(@book.id)
+     redirect_to book_path(@book.id),notice: 'Book was successfully created.'
    else
      render :index
    end
