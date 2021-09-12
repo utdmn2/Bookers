@@ -26,10 +26,17 @@
     margin: 33px;
      }
 
-p {
+.top-text {
   margin:33px;
 }
 
-a {
+.top-enter {
   margin: 33px;
 }
+
+main {
+  margin: 33px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  
+}
+

@@ -24,15 +24,19 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to book_path(book.id)
+   @book = Book.find(params[:id])
+  
+    if @book.update(book_params)
+    redirect_to book_path(book.id) ,notice: "Book was successfully updated."
+    else
+    render :edit
+    end
   end
 
   def destroy
     book = Book.find(params[:id]) #データ(レコード)を一件取得
     book.destroy  #データ（レコード）を削除
-    redirect_to books_path #投稿一覧画面へリダイレクト
+    redirect_to books_path ,notice: "Book was successfully destroyed."#投稿一覧画面へリダイレクト
 
   end
 
